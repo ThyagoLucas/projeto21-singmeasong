@@ -33,7 +33,7 @@ export default function Home() {
     <>
       <CreateNewRecommendation disabled={loadingCreatingRecommendation} onCreateNewRecommendation={handleCreateRecommendation} />
       {
-        recommendations.map(recommendation => (
+        recommendations.map(recommendation => ( 
           <Recommendation
             key={recommendation.id}
             {...recommendation}
