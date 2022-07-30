@@ -12,4 +12,6 @@ model Recommendation {
   name        String @unique
   youtubeLink String
   score       Int    @default(0)
+
+  @@map("recommendation")
 }

@@ -7,20 +7,61 @@ export async function createEnvironment() {
 		{
 			name: faker.music.songName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
-		},
-
-		{
+		},{
 			name: faker.music.songName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 
-		}, {
+		},{
 			name: faker.music.songName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			score:faker.datatype.number({min:1,max:100})
+
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			score:faker.datatype.number({min:1,max:100})
+
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			score:faker.datatype.number({min:1,max:100})
+
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			score:faker.datatype.number({min:1,max:100})
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			score:faker.datatype.number({min:1,max:100})
+			
+		},{
+			name: faker.music.songName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			score: faker.datatype.number({min:1,max:100})
 
 		} as Recommendation];
 
-	await prisma.recommendation.deleteMany({});
+	await prisma.$executeRaw`TRUNCATE TABLE recommendation`;
+
 	await prisma.recommendation.createMany({
-		data: datas,
+		data: datas
 	});
+
+	
 }
