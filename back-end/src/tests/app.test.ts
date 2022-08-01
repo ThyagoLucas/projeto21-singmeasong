@@ -105,9 +105,6 @@ describe('tests integration suit', () => {
 		expect(recommendation.body.length).not.toBe(null);
 		expect(recommendation.body.length).toBe(randon);
 
-		
-		
-
 	});
 
 });

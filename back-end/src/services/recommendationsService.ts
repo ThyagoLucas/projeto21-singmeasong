@@ -16,7 +16,7 @@ async function insert(createRecommendationData: CreateRecommendationData) {
 }
 
 async function upvote(id: number) {
-	
+
 	await getByIdOrFail(id);
 
 	await recommendationRepository.updateScore(id, 'increment');
@@ -85,9 +85,9 @@ function getScoreFilter(random: number) {
 }
 
 export const recommendationService = {
-	insert,
-	upvote,
-	downvote,
+	insert, //ok
+	upvote, //ok
+	downvote, //ok
 	getRandom,
 	get,
 	getById: getByIdOrFail,

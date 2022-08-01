@@ -32,5 +32,47 @@ describe('units tests suite', () => {
 		expect(promise).rejects.toEqual({ message: 'Recommendations names must be unique', type: 'conflict' });
 	});
 
+	it('try up vote', async () => {
+		const recommendation = {
+			name: faker.music.songName(),
+			youubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			id: 1, score: 0};
+
+		jest.spyOn(recommendationRepository, 'find').mockImplementationOnce((): any => recommendation);
+		jest.spyOn(recommendationRepository, 'updateScore').mockImplementationOnce((): any => {});
+
+		const id = faker.datatype.number({min:1, max:10});
+
+		await recommendationService.upvote(id);
+		expect(recommendationRepository.updateScore).toBeCalled();
+        
+	});
+	
+	it('try down vote', async () => {
+
+		const recommendation = {
+			name: faker.music.songName(),
+			youubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			id: 1, score: faker.datatype.number({min:-20, max:10})};
+
+		jest.spyOn(recommendationRepository, 'find').mockImplementationOnce((): any => {
+			return recommendation;
+		});
+		jest.spyOn(recommendationRepository, 'updateScore').mockImplementationOnce((): any => {
+			return recommendation;
+		});
+		jest.spyOn(recommendationRepository, 'remove').mockImplementationOnce((): any => {});
+
+		const id = faker.datatype.number({min:1, max:10});
+
+		await recommendationService.downvote(id);
+		
+		if(recommendation.score < -5) expect(recommendationRepository.remove).toBeCalled();
+
+		else expect(recommendationRepository.updateScore).toBeCalled();
+        
+	});
+
     
+
 });
