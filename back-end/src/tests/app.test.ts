@@ -100,7 +100,6 @@ describe('tests integration suit', () => {
 
 		// solução de software não documentada = gamby
 		recommendation.body[0].score > recommendation.body[1].score ? expect(1).toBe(1):expect(recommendation.body).toBe(null);
-		console.log(recommendation.body);
 
 		expect(recommendation.statusCode).toBe(200);
 		expect(recommendation.body.length).not.toBe(null);
@@ -111,8 +110,7 @@ describe('tests integration suit', () => {
 
 	});
 
-	
-
-
 });
+
+
 
