@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import { jest } from '@jest/globals';
 import { recommendationService, CreateRecommendationData } from '../../src/services/recommendationsService.js';
 import { recommendationRepository } from '../../src/repositories/recommendationRepository.js';
-import * as error from '../../src/utils/errorUtils.js';
+
 
 describe('units tests suite', () => {
 
