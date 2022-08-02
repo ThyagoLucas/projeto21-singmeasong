@@ -1,8 +1,8 @@
 import supertest from 'supertest';
 import { faker } from '@faker-js/faker';
-import app from '../app.js';
-import { createEnvironment } from './factore/createEnvironment.js';
-import { prisma } from '../database.js';
+import app from '../../src/app.js';
+import { createEnvironment } from '../factore/createEnvironment.js';
+import  { prisma }  from '../../src/database.js';
 
 beforeEach(async () => {
 	await createEnvironment();
@@ -100,19 +100,14 @@ describe('tests integration suit', () => {
 
 		// solução de software não documentada = gamby
 		recommendation.body[0].score > recommendation.body[1].score ? expect(1).toBe(1):expect(recommendation.body).toBe(null);
-		console.log(recommendation.body);
 
 		expect(recommendation.statusCode).toBe(200);
 		expect(recommendation.body.length).not.toBe(null);
 		expect(recommendation.body.length).toBe(randon);
 
-		
-		
-
 	});
 
-	
-
-
 });
+
+
 

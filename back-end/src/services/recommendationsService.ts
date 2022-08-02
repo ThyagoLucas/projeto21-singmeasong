@@ -4,23 +4,25 @@ import { conflictError, notFoundError } from '../utils/errorUtils.js';
 
 export type CreateRecommendationData = Omit<Recommendation, 'id' | 'score'>;
 
-async function insert(createRecommendationData: CreateRecommendationData) {
+async function insert(createRecommendationData: CreateRecommendationData) { //ok
 	const existingRecommendation = await recommendationRepository.findByName(
 		createRecommendationData.name
 	);
+
 	if (existingRecommendation)
 		throw conflictError('Recommendations names must be unique');
 
 	await recommendationRepository.create(createRecommendationData);
 }
 
-async function upvote(id: number) {
+async function upvote(id: number) { //ok
+
 	await getByIdOrFail(id);
 
 	await recommendationRepository.updateScore(id, 'increment');
 }
 
-async function downvote(id: number) {
+async function downvote(id: number) { //ok
 	await getByIdOrFail(id);
 
 	const updatedRecommendation = await recommendationRepository.updateScore(
@@ -33,18 +35,20 @@ async function downvote(id: number) {
 	}
 }
 
-async function getByIdOrFail(id: number) {
+async function getByIdOrFail(id: number) { //ok
+
 	const recommendation = await recommendationRepository.find(id);
 	if (!recommendation) throw notFoundError();
 
 	return recommendation;
+
 }
 
-async function get() {
+async function get() {//ok
 	return recommendationRepository.findAll();
 }
 
-async function getTop(amount: number) {
+async function getTop(amount: number) { //ok
 	return recommendationRepository.getAmountByScore(amount);
 }
 
@@ -83,11 +87,11 @@ function getScoreFilter(random: number) {
 }
 
 export const recommendationService = {
-	insert,
-	upvote,
-	downvote,
+	insert, //ok
+	upvote, //ok
+	downvote, //ok
 	getRandom,
-	get,
-	getById: getByIdOrFail,
-	getTop,
+	get, //ok
+	getById: getByIdOrFail,//ok
+	getTop, //ok
 };

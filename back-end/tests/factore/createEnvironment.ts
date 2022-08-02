@@ -1,57 +1,57 @@
 import { faker } from '@faker-js/faker';
 import { Recommendation } from '@prisma/client';
-import { prisma } from '../../database.js';
+import { prisma } from '../../src/database.js';
 
 export async function createEnvironment() {
 	const datas = [
 		{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 		},{
-			name: faker.music.songName(),
-			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
-
-		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 
 		},{
-			name: faker.music.songName(),
-			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
-		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 
 		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+		},{
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 
 		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
+			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+
+		},{
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 			score:faker.datatype.number({min:1,max:100})
 
 		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 			score:faker.datatype.number({min:1,max:100})
 
 		},{
-			name: faker.music.songName(),
+			name: faker.animal.horse(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 			score:faker.datatype.number({min:1,max:100})
 
 		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 			score:faker.datatype.number({min:1,max:100})
 		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 			score:faker.datatype.number({min:1,max:100})
 			
 		},{
-			name: faker.music.songName(),
+			name: faker.name.findName(),
 			youtubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
 			score: faker.datatype.number({min:1,max:100})
 
