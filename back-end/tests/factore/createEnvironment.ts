@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import { Recommendation } from '@prisma/client';
-import { prisma } from '../../database.js';
+import { prisma } from '../../src/database.js';
 
 export async function createEnvironment() {
 	const datas = [

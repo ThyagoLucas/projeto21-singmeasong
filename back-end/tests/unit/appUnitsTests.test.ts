@@ -1,6 +1,9 @@
+
 import { faker } from '@faker-js/faker';
-import { recommendationService, CreateRecommendationData } from './../services/recommendationsService';
-import { recommendationRepository } from './../repositories/recommendationRepository.js';
+import { jest } from '@jest/globals';
+import { recommendationService, CreateRecommendationData } from '../../src/services/recommendationsService.js';
+import { recommendationRepository } from '../../src/repositories/recommendationRepository.js';
+import * as error from '../../src/utils/errorUtils.js';
 
 describe('units tests suite', () => {
 
@@ -9,7 +12,7 @@ describe('units tests suite', () => {
 		jest.spyOn(recommendationRepository, 'findByName').mockImplementation( () => {
 			return null;
 		});
-		jest.spyOn(recommendationRepository, 'create').mockImplementation();
+		jest.spyOn(recommendationRepository, 'create').mockImplementation(():any => null);
 
 		const toInsert = {} as CreateRecommendationData;
 		toInsert.name = faker.music.songName();
@@ -53,7 +56,7 @@ describe('units tests suite', () => {
 		const recommendation = {
 			name: faker.music.songName(),
 			youubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
-			id: 1, score: faker.datatype.number({min:-20, max:10})};
+			id: 1, score: -6};
 
 		jest.spyOn(recommendationRepository, 'find').mockImplementationOnce((): any => {
 			return recommendation;
@@ -73,6 +76,47 @@ describe('units tests suite', () => {
         
 	});
 
+	it('test function getAll', async () => {
+		jest.spyOn(recommendationRepository, 'findAll').mockImplementationOnce((): any => {});
+		await recommendationService.get();
+        
+		expect(recommendationRepository.findAll).toBeCalled();
+
+	});
     
+	it('try getById test', async () => {
+
+		const id = faker.datatype.number({min:1, max:10});
+
+		jest.spyOn(recommendationRepository, 'find').mockImplementationOnce((): any => true);
+
+		await recommendationService.getById(id);
+
+		expect(recommendationRepository.find).toBeCalled();
+
+	});
+
+	it('try getById when the fail test', async () => {
+
+		const id = faker.datatype.number({min:1, max:10});
+
+		jest.spyOn(recommendationRepository, 'find').mockImplementationOnce((): any => false);
+
+		const promise = recommendationService.getById(id);
+        
+		expect(promise).rejects.toEqual({ message: '', type: 'not_found' });
+
+	});
+
+	it('try getTop recomendations', async () => {
+        
+		const number = faker.datatype.number({min:1, max:10});
+		jest.spyOn(recommendationRepository, 'getAmountByScore').mockImplementationOnce((): any => {});
+
+		await recommendationService.getTop(number);
+		expect(recommendationRepository.getAmountByScore).toBeCalled();
+
+	});
 
 });
+

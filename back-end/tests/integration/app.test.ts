@@ -1,8 +1,8 @@
 import supertest from 'supertest';
 import { faker } from '@faker-js/faker';
-import app from '../app.js';
-import { createEnvironment } from './factore/createEnvironment.js';
-import { prisma } from '../database.js';
+import app from '../../src/app.js';
+import { createEnvironment } from '../factore/createEnvironment.js';
+import  { prisma }  from '../../src/database.js';
 
 beforeEach(async () => {
 	await createEnvironment();

@@ -8,8 +8,8 @@
     "dev": "nodemon src/server.ts",
     "dev:test": "dotenv -e .env.test nodemon src/server.ts",
     "test": "dotenv -e .env.test prisma migrate dev && NODE_OPTION=--experimental-vm-modules dotenv -e .env.test jest -i",
-    "test:unit": "jest -i --coverage"
-
+    "test:unit": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i -- --coverage --testPathPattern=tests/unit",
+    "test:int": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -i -- --testPathPattern=tests/integration"
   },
   "keywords": [],
   "author": "",

@@ -36,10 +36,12 @@ async function downvote(id: number) {
 }
 
 async function getByIdOrFail(id: number) {
+
 	const recommendation = await recommendationRepository.find(id);
 	if (!recommendation) throw notFoundError();
 
 	return recommendation;
+
 }
 
 async function get() {
@@ -89,7 +91,7 @@ export const recommendationService = {
 	upvote, //ok
 	downvote, //ok
 	getRandom,
-	get,
-	getById: getByIdOrFail,
-	getTop,
+	get, //ok
+	getById: getByIdOrFail,//ok
+	getTop, //ok
 };
