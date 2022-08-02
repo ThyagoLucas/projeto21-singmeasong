@@ -12,7 +12,7 @@ describe('units tests suite', () => {
 		jest.spyOn(recommendationRepository, 'findByName').mockImplementation( () => {
 			return null;
 		});
-		jest.spyOn(recommendationRepository, 'create').mockImplementation(():any => null);
+		jest.spyOn(recommendationRepository, 'create').mockImplementation(() => null);
 
 		const toInsert = {} as CreateRecommendationData;
 		toInsert.name = faker.music.songName();
@@ -28,7 +28,7 @@ describe('units tests suite', () => {
 		toInsert.name = faker.music.songName();
 		toInsert.youtubeLink =  `https://www.youtube.com/watch?v=${faker.database.engine()}`;
 
-		jest.spyOn(recommendationRepository, 'findByName').mockImplementationOnce((): any => true);
+		jest.spyOn(recommendationRepository, 'findByName').mockImplementationOnce(():any =>  true);
    
 		const promise = recommendationService.insert(toInsert);
        
@@ -42,7 +42,7 @@ describe('units tests suite', () => {
 			id: 1, score: 0};
 
 		jest.spyOn(recommendationRepository, 'find').mockImplementationOnce((): any => recommendation);
-		jest.spyOn(recommendationRepository, 'updateScore').mockImplementationOnce((): any => {});
+		jest.spyOn(recommendationRepository, 'updateScore').mockImplementationOnce(() => null);
 
 		const id = faker.datatype.number({min:1, max:10});
 
@@ -76,7 +76,7 @@ describe('units tests suite', () => {
         
 	});
 
-	it('test function getAll', async () => {
+	it('try test function getAll', async () => {
 		jest.spyOn(recommendationRepository, 'findAll').mockImplementationOnce((): any => {});
 		await recommendationService.get();
         
@@ -117,6 +117,44 @@ describe('units tests suite', () => {
 		expect(recommendationRepository.getAmountByScore).toBeCalled();
 
 	});
+
+	it ('check get randon', async () => {
+
+		const recommendation = {
+			name: faker.music.songName(),
+			youubeLink: `https://www.youtube.com/watch?v=${faker.database.engine()}`,
+			id: 1, score: 5
+		};
+
+
+		jest.spyOn(Math, 'random').mockImplementationOnce(() => 0.7);
+		jest.spyOn(Math, 'floor').mockImplementationOnce(()=>0);
+		jest.spyOn(recommendationRepository, 'findAll').mockImplementationOnce(():any => recommendation);
+
+		const promise = await recommendationService.getRandom();
+
+		expect(Math.floor).toBeCalled();
+		expect(recommendationRepository.findAll).toBeCalled();
+		expect(promise).not.toBe(null);
+	});
+
+	it ('check get randon insucess', async () => {
+
+		jest.spyOn(Math, 'random').mockImplementationOnce(() => 0.7);
+		jest.spyOn(Math, 'floor').mockImplementationOnce(()=>1);
+		jest.spyOn(recommendationRepository, 'findAll').mockImplementationOnce(():any => []);
+
+		const promise = await recommendationService.getRandom();
+
+		expect(Math.floor).toBeCalled();
+		expect(Math.random).toBeCalled();
+		expect(recommendationRepository.findAll).toBeCalled();
+		expect(promise).rejects.toEqual({ message: '', type: 'not_found' });
+		expect(promise).not.toBe(null);
+
+	});
+
+
 
 });
 
