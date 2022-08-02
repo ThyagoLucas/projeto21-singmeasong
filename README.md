@@ -10,44 +10,59 @@
 
 ##  About
 
-Boardcamp is a management music recommendations!
+Sing Me a Song is a management music recommendations!
 
 This is an web application where it is recommend songs, separate them by all, top or random recommendations.
 
 <div align="center">
 
-![GitHub Org's stars](https://img.shields.io/github/stars/lusntgo?style=social)
+![GitHub Org's stars](https://img.shields.io/github/stars/thyagolucas?style=social)
 
 </div>
 
 
 ## :tada: How to run
 
-1. Clone this repository
+  1. Clone this repository
 ```bash
-git clone https://github.com/LuSntgo/Boardcamp
+  git clone https://github.com/ThyagoLucas/projeto21-singmeasong
 ```
-2. Clone the back-end repository at https://github.com/ThyagoLucas/projeto21-singmeasong and follow the instructions to run
-3. In your terminal, go back to the root folder and install the dependencies
+  2. In your terminal, go back to the back and front-end root folder and install the dependencies
 ```bash
-npm i
+  npm i
 ```
-4. Also in the root folder, run the front-end with
-```bash
-npm start
-```
-5. Your server should be running now.
 
-6.  In your terminal, go to the root folder and run the tests with:
+  3. In the root folder back-end, run the back-end server with:
 ```bash
-
-integration tests: npm run test:int
-unitary tests: npm run test:unit
-
+  npm run start
 ```
+
+  4. Also in the root folder front-end, run the front-end server with
+```bash
+  npm start
+```
+  5. Your server should be running now, frontend and backend.
+
+  6. In your terminal, go to the root folder and run the tests with:
+
+  for integration test run:
+```bash
+  npm run test:int
+```
+  or for unitary test run:
+ ```bash
+ npm run test:unit
+ ```
+ 
+  front-end tests were done using the Cypress tool. To run e2e tests you need run the next command int your terminal in the root of front-end folder:
+  
+  ```bash
+  npx cypress open
+  ```
+  and choose the test you want to take
 
 
 
 ## :sparkles: Author
 
-[<img align="center" src="https://avatars.githubusercontent.com/lusntgo" width=115><br><sub>Luiza Santiago</sub>](https://github.com/lusntgo)
+[<img align="center" src="https://avatars.githubusercontent.com/thyagolucas" width=115><br><sub>Thyago Lucas</sub>](https://github.com/thyagolucas)
